@@ -9,6 +9,8 @@ using NewsChecker.Data;
 using NewsChecker.Services;
 using System.Text;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(auth =>
@@ -55,6 +57,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NewsCheckerContext>(opts => opts.UseLazyLoadingProxies().UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnection")));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost:3000");
+                      });
+});
 
 
 var app = builder.Build();
@@ -67,6 +77,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();

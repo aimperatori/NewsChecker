@@ -10,7 +10,8 @@ using NewsChecker.Services;
 namespace NewsChecker.Controllers
 {
     [ApiController]
-    [Route("[controller]"), Authorize]
+    //[Route("[controller]"), Authorize]
+    [Route("[controller]")]
     public class NewspaperController : ControllerBase
     {
         NewspaperService _service;

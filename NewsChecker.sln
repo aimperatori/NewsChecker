@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsChecker", "NewsChecker\NewsChecker.csproj", "{42E2AE8F-7FD2-4D11-886B-5E3585A7893E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAuthenticator", "UserAuthenticator\UserAuthenticator.csproj", "{5A5EF8D1-5746-4B3B-9313-ED2AFB0ECA03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticator", "UserAuthenticator\UserAuthenticator.csproj", "{5A5EF8D1-5746-4B3B-9313-ED2AFB0ECA03}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "webpage", "WebPage\webpage.esproj", "{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{5A5EF8D1-5746-4B3B-9313-ED2AFB0ECA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5EF8D1-5746-4B3B-9313-ED2AFB0ECA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5EF8D1-5746-4B3B-9313-ED2AFB0ECA03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD9688F-EC50-4CDE-AADE-5BFEFEAF864A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

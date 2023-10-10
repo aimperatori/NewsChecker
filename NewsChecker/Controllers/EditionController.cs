@@ -6,7 +6,7 @@ using NewsChecker.Data;
 using NewsChecker.Services;
 using FluentResults;
 
-namespace EditionChecker.Controllers
+namespace NewsChecker.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -20,7 +20,7 @@ namespace EditionChecker.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() 
+        public IActionResult Get()
         {
             return Ok(_editionService.Get());
         }
