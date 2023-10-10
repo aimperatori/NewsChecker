@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# database
+NewsChecker/App_Data/*
+/NewsChecker/App_Data/NewsCheckerDB.db
