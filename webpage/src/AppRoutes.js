@@ -2,7 +2,10 @@ import { Counter } from "./components/Counter";
 import { Edition } from "./components/Edition";
 import { Home } from "./components/Home";
 import { Journalist } from "./components/Journalist";
-import { NewsPapper } from "./components/Newspapper";
+import { ListNewspapper } from "./pages/Newspapper/ListNewspapper";
+import { CreateNewspapper } from "./pages/Newspapper/CreateNewspapper";
+import EditNewspapper from "./pages/Newspapper/EditNewspapper";
+import DeleteNewspapper from "./pages/Newspapper/DeleteNewpapper";
 import { News } from "./components/News";
 
 const AppRoutes = [
@@ -16,7 +19,19 @@ const AppRoutes = [
     },
     {
         path: '/newspapper',
-        element: <NewsPapper />
+        element: <ListNewspapper />
+    },
+    {
+        path: '/newspapper/create',
+        element: <CreateNewspapper />
+    },
+    {
+        path: '/newspapper/edit/:id',
+        element: <EditNewspapper />
+    },
+    {
+        path: '/newspapper/delete/:id',
+        element: <DeleteNewspapper />
     },
     {
         path: '/edition',
