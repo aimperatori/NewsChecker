@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import { ListAbstract } from '../../components/ListAbstract'
 
-export class ListNewspapper extends ListAbstract {
-
+export class ListJournalist extends ListAbstract {
+    
     constructor(props) {
         super(props);
-        this.state.title = "Newspapper"
+        this.state.title = "Journalist";
     }
 
     renderTable(data) {
@@ -21,15 +21,15 @@ export class ListNewspapper extends ListAbstract {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(newpapper =>
-                    <tr key={newpapper.id}>
-                        <td>{newpapper.id}</td>
-                        <td>{newpapper.name}</td>
-                        <td>
-                            <Link to={`edit/${newpapper.id}`}>Edit</Link>
-                            <Link to={`delete/${newpapper.id}`}>Delete</Link>
-                        </td>
-                    </tr>
+                    {data.map(journalist =>
+                        <tr key={journalist.id}>
+                            <td>{journalist.id}</td>
+                            <td>{journalist.name}</td>
+                            <td>
+                                <Link to={`edit/${journalist.id}`}>Edit</Link>
+                                <Link to={`delete/${journalist.id}`}>Delete</Link>
+                            </td>
+                        </tr>
                     )}
                 </tbody>
             </table>
@@ -37,7 +37,7 @@ export class ListNewspapper extends ListAbstract {
     }
 
     async populateData() {
-        const response = await NewsCheckerFetcher.Get("newspaper");
+        const response = await NewsCheckerFetcher.Get("journalist");
         const data = await response.json();
         this.setState({ data: data, loading: false });
     }

@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
+import { ListAbstract } from '../../components/ListAbstract'
 
-export class News extends Component {
-    static displayName = News.name;
+export class ListNews extends ListAbstract {
 
     constructor(props) {
         super(props);
-        this.state = { news: [], loading: true };
+        this.state.title = "News";
     }
 
-    componentDidMount() {
-        this.populateNewsData();
-    }
-
-    static renderNewsTable(news) {
+    renderTable(data) {
         return (
             <table className="table table-striped" aria-labelledby="tableLabel">
                 <thead>
@@ -24,10 +23,11 @@ export class News extends Component {
                         <th>Edition name</th>
                         <th>Published data</th>
                         <th>Newspapper name</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {news.map(article =>
+                    {data.map(article =>
                         <tr key={article.id}>
                             <td>{article.id}</td>
                             <td>{article.title}</td>
@@ -36,6 +36,10 @@ export class News extends Component {
                             <td>{article.edition.name}</td>
                             <td>{article.edition.publishDate}</td>
                             <td>{article.edition.newspaper.name}</td>
+                            <td>
+                                <Link to={`edit/${article.id}`}>Edit</Link>
+                                <Link to={`delete/${article.id}`}>Delete</Link>
+                            </td>
                         </tr>
                     )}
                 </tbody>
@@ -43,23 +47,9 @@ export class News extends Component {
         );
     }
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : News.renderNewsTable(this.state.news);
-
-        return (
-            <div>
-                <h1 id="tableLabel">News</h1>
-                <p>This component demonstrates fetching data from the server.</p>
-                {contents}
-            </div>
-        );
-    }
-
-    async populateNewsData() {
-        const response = await fetch('https://localhost:7113/News');
+    async populateData() {
+        const response = await NewsCheckerFetcher.Get("news");
         const data = await response.json();
-        this.setState({ news: data, loading: false });
+        this.setState({ data: data, loading: false });
     }
 }
