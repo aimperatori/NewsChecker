@@ -17,6 +17,8 @@ export class ListEdition extends ListAbstract {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Publish Date</th>
+                        <th>Newspapper</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -25,6 +27,8 @@ export class ListEdition extends ListAbstract {
                         <tr key={edition.id}>
                             <td>{edition.id}</td>
                             <td>{edition.name}</td>
+                            <td>{edition.publishDate}</td>
+                            <td>{edition.newspaper.name}</td>
                             <td>
                                 <Link to={`edit/${edition.id}`}>Edit</Link>
                                 <Link to={`delete/${edition.id}`}>Delete</Link>
