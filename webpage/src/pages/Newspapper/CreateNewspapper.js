@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 
 export class CreateNewspapper extends Component {
     static displayName = CreateNewspapper.name;
@@ -28,16 +29,9 @@ export class CreateNewspapper extends Component {
             name: newspapperName,
         };
 
-        fetch('https://localhost:7113/Newspaper', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
+        NewsCheckerFetcher.Post("Newspaper", formData)
             .then((response) => response.json())
             .then((data) => {
-                // Manipule a resposta da API conforme necessário
                 console.log(data);
                 this.setState({ loading: false });
             })
