@@ -6,6 +6,7 @@ import { CreateNewspapper } from "./pages/Newspapper/CreateNewspapper";
 import EditNewspapper from "./pages/Newspapper/EditNewspapper";
 import DeleteNewspapper from "./pages/Newspapper/DeleteNewpapper";
 import { ListNews } from "./pages/News/ListNews";
+import { CreateNews } from "./pages/News/CreateNews";
 import { CreateEdition } from "./pages/Edition/CreateEdition"
 
 import { ListEdition } from "./pages/Edition/ListEdition"
@@ -50,6 +51,10 @@ const AppRoutes = [
     {
         path: '/news',
         element: <ListNews />
+    },
+    {
+        path: '/news/create',
+        element: <CreateNews />
     }
 ];
 

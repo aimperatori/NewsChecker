@@ -5,6 +5,7 @@ using NewsChecker.Data;
 using NewsChecker.Data.DTO.Journalist;
 using NewsChecker.Data.DTO.News;
 using NewsChecker.Models;
+using System.Collections.Generic;
 
 namespace NewsChecker.Services
 {
@@ -19,9 +20,36 @@ namespace NewsChecker.Services
             _mapper = mapper;
         }
 
-        public DbSet<News> Get()
+
+        public List<ReadNewsDTO> Get()
         {
-            return _context.News;
+            List<ReadNewsDTO> list = new();
+
+            foreach (var news in _context.News)
+            {
+                ReadNewsDTO newsDTO = _mapper.Map<ReadNewsDTO>(news);
+
+                var query =
+                   from journalist in _context.Journalist
+                   join jn in _context.JournalistNews on journalist.Id equals jn.JournalistId
+                   where jn.NewsId == news.Id
+                   select new { Journalist = journalist };
+
+                List<ReadJournalistDTO> journalistList = new();
+
+                foreach (var journalist in query)
+                {
+                    ReadJournalistDTO journalistDTO = _mapper.Map<ReadJournalistDTO>(journalist.Journalist);
+
+                    journalistList.Add(journalistDTO);
+                }
+
+                newsDTO.Journalist = journalistList;
+
+                list.Add(newsDTO);
+            }
+
+            return list;
         }
 
         public ReadNewsDTO? Get(int id)
