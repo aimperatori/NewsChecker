@@ -1,5 +1,6 @@
 import { Home } from "./components/Home";
 import { ListJournalist } from "./pages/Journalist/ListJournalist";
+import { CreateJournalist } from "./pages/Journalist/CreateJournalist";
 import { ListNewspapper } from "./pages/Newspapper/ListNewspapper";
 import { CreateNewspapper } from "./pages/Newspapper/CreateNewspapper";
 import EditNewspapper from "./pages/Newspapper/EditNewspapper";
@@ -41,6 +42,10 @@ const AppRoutes = [
     {
         path: '/journalist',
         element: <ListJournalist />
+    },
+    {
+        path: '/journalist/create',
+        element: <CreateJournalist />
     },
     {
         path: '/news',
