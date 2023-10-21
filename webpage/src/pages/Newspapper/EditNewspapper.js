@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 
 function EditNewspapper() {
     const { id } = useParams();
@@ -10,7 +11,7 @@ function EditNewspapper() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch(`https://localhost:7113/Newspaper/${id}`)
+        NewsCheckerFetcher.Get('Newspaper', id)
             .then(response => response.json())
             .then(data => {
                 setNewspapperName(data.name);
@@ -32,13 +33,7 @@ function EditNewspapper() {
             name: newspapperName,
         };
 
-        fetch(`https://localhost:7113/Newspaper/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
+        NewsCheckerFetcher.Put("Newspaper", id, formData)
             .then((data) => {
                 console.log(data);
                 setLoading(false);

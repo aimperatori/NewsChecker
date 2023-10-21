@@ -2,7 +2,11 @@
 export class NewsCheckerFetcher {
 
     static async Get(endpoint) {
-        return fetch('https://localhost:7113/' + endpoint);
+        return fetch(`https://localhost:7113/${endpoint}`);
+    }
+
+    static async Get(endpoint, id) {
+        return fetch(`https://localhost:7113/${endpoint}/${id}`);
     }
 
     static async Post(endpoint, formData) {
@@ -25,6 +29,16 @@ export class NewsCheckerFetcher {
                 this.setState({ loading: false });
             });
             */
+    }
+
+    static async Put(endpoint, id, formData) {
+        return fetch(`https://localhost:7113/${endpoint}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
     }
 
 }
