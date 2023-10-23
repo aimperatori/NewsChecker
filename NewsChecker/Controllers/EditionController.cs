@@ -47,7 +47,7 @@ namespace NewsChecker.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] UpdateEditionDTO editionDTO, int id)
+        public IActionResult Put(int id, [FromBody] UpdateEditionDTO editionDTO)
         {
             Result result = _editionService.Put(editionDTO, id);
 
