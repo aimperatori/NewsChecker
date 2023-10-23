@@ -5,7 +5,7 @@ export class NewsCheckerFetcher {
         return fetch(`https://localhost:7113/${endpoint}`);
     }
 
-    static async Get(endpoint, id) {
+    static async GetById(endpoint, id) {
         return fetch(`https://localhost:7113/${endpoint}/${id}`);
     }
 

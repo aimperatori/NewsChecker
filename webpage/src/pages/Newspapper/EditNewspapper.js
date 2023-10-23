@@ -11,7 +11,7 @@ function EditNewspapper() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        NewsCheckerFetcher.Get('Newspaper', id)
+        NewsCheckerFetcher.GetById('Newspaper', id)
             .then(response => response.json())
             .then(data => {
                 setNewspapperName(data.name);
