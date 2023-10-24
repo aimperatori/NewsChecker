@@ -41,4 +41,10 @@ export class NewsCheckerFetcher {
         });
     }
 
+    static async Delete(endpoint, id) {
+        return fetch(`https://localhost:7113/${endpoint}/${id}`, {
+            method: 'DELETE'
+        });
+    }
+
 }

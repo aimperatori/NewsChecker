@@ -2,6 +2,7 @@ import { Home } from "./components/Home";
 import { ListJournalist } from "./pages/Journalist/ListJournalist";
 import { CreateJournalist } from "./pages/Journalist/CreateJournalist";
 import EditJournalist from "./pages/Journalist/EditJournalist";
+import DeleteJournalist from "./pages/Journalist/DeleteJournalist";
 import { ListNewspapper } from "./pages/Newspapper/ListNewspapper";
 import { CreateNewspapper } from "./pages/Newspapper/CreateNewspapper";
 import EditNewspapper from "./pages/Newspapper/EditNewspapper";
@@ -9,9 +10,11 @@ import DeleteNewspapper from "./pages/Newspapper/DeleteNewpapper";
 import { ListNews } from "./pages/News/ListNews";
 import { CreateNews } from "./pages/News/CreateNews";
 import EditNews from "./pages/News/EditNews";
+import DeleteNews from "./pages/News/DeleteNews";
 import { CreateEdition } from "./pages/Edition/CreateEdition"
 import { ListEdition } from "./pages/Edition/ListEdition"
 import EditEdition from "./pages/Edition/EditEdition"
+import DeleteEdition from "./pages/Edition/DeleteEdition"
 
 const AppRoutes = [
     {
@@ -47,6 +50,10 @@ const AppRoutes = [
         element: <EditEdition />
     },
     {
+        path: '/edition/delete/:id',
+        element: <DeleteEdition />
+    },
+    {
         path: '/journalist',
         element: <ListJournalist />
     },
@@ -59,6 +66,10 @@ const AppRoutes = [
         element: <EditJournalist />
     },
     {
+        path: '/journalist/delete/:id',
+        element: <DeleteJournalist />
+    },
+    {
         path: '/news',
         element: <ListNews />
     },
@@ -69,6 +80,10 @@ const AppRoutes = [
     {
         path: '/news/edit/:id',
         element: <EditNews />
+    },
+    {
+        path: '/news/delete/:id',
+        element: <DeleteNews />
     }
 ];
 

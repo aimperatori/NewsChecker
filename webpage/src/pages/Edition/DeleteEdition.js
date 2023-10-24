@@ -3,16 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import ConfirmDelete from '../../components/ConfirmDelete';
 
-function DeleteNewspapper() {
+function DeleteEdition() {
     const { id } = useParams();
     const navigate = useNavigate();
 
     const handleDelete = () => {
-        NewsCheckerFetcher.Delete('newspaper', id)
+        NewsCheckerFetcher.Delete('edition', id)
             .then((response) => {
                 if (response.status === 200 || response.status === 204) {
                     // A exclusão foi bem-sucedida, navegue de volta para a página de listagem
-                    navigate('/newspapper', { replace: true }); // Use { replace: true } para substituir a entrada do histórico
+                    navigate('/edition', { replace: true }); // Use { replace: true } para substituir a entrada do histórico
                 } else {
                     console.error('Erro ao excluir o registro');
                     console.error(response);
@@ -25,11 +25,11 @@ function DeleteNewspapper() {
 
     return (
         <ConfirmDelete
-            titulo="Confirm Delete Newspapper"
-            mensagem="Are you sure you want to delete the newspapper?"
+            titulo="Confirm Delete Edition"
+            mensagem="Are you sure you want to delete the edition?"
             handleDelete={handleDelete}
         />
     );
 }
 
-export default DeleteNewspapper;
+export default DeleteEdition;
