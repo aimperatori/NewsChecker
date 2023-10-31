@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NewsChecker.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewsChecker.Data.DTO.News
 {
@@ -11,5 +12,7 @@ namespace NewsChecker.Data.DTO.News
         public string Resume { get; set; } = string.Empty;
         [Required]
         public int EditionId { get; set; }
+        [Required]
+        public NewsType NewsType { get; set; }
     }
 }
