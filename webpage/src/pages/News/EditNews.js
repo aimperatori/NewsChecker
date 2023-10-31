@@ -11,6 +11,8 @@ function EditNews() {
     const [subtitle, setSubtitle] = useState('');
     const [resume, setResume] = useState('');
     const [editionId, setEditionId] = useState('');
+    const [newsType, setNewsType] = useState('');
+    
 
     const [loading, setLoading] = useState(false);
 
@@ -21,7 +23,8 @@ function EditNews() {
                 setTitle(data.title);
                 setSubtitle(data.subtitle),
                 setResume(data.resume),
-                setEditionId(data.edition.id)
+                setEditionId(data.edition.id),
+                setNewsType(data.newsType)
             })
             .catch(error => {
                 console.error('Erro ao buscar dados:', error);
@@ -44,6 +47,10 @@ function EditNews() {
         setEditionId(e.target.value);
     };
 
+    const newsTypeHandleChange = (e) => {
+        setNewsType(e.target.value);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
@@ -52,8 +59,11 @@ function EditNews() {
             title: title,
             subtitle: subtitle,
             resume: resume,
-            editionId: editionId
-,        };
+            editionId: editionId,
+            newsType: parseInt(newsType)
+        };
+
+        console.log(formData);
 
         NewsCheckerFetcher.Put("news", id, formData)
             .then((data) => {
@@ -110,6 +120,16 @@ function EditNews() {
                         placeholder="Enter Edition Id"
                         value={editionId}
                         onChange={editionIdHandleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formNewsType">
+                    <Form.Label>News Type</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter news type"
+                        value={newsType}
+                        onChange={newsTypeHandleChange}
                     />
                 </Form.Group>
 

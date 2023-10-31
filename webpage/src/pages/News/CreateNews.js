@@ -12,6 +12,7 @@ export class CreateNews extends Component {
             subtitle: '',
             resume: '',
             editionId: '',
+            newsType: '',
             journalistIds: [''],
             loading: false,
         };
@@ -37,13 +38,14 @@ export class CreateNews extends Component {
         e.preventDefault();
         this.setState({ loading: true });
 
-        const { title, subtitle, resume, editionId, journalistIds } = this.state;
+        const { title, subtitle, resume, editionId, journalistIds, newsType } = this.state;
 
         const formData = {
             title: title,
             subtitle: subtitle,
             resume: resume,
             editionId: editionId,
+            newsType: parseInt(newsType)
             //journalistsId: journalistIds
         };
 
@@ -125,6 +127,17 @@ export class CreateNews extends Component {
                             placeholder="Enter news Edition"
                             name="editionId"
                             value={this.state.editionId}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formNewsType">
+                        <Form.Label>News Type</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter news type"
+                            name="newsType"
+                            value={this.state.newsType}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
