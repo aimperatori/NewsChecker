@@ -2,81 +2,81 @@
 using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using NewsChecker.Data;
-using NewsChecker.Data.DTO.Newspaper;
-using NewsChecker.Data.DTO.Newspaper;
+using NewsChecker.Data.DTO.Newspapper;
+using NewsChecker.Data.DTO.Newspapper;
 using NewsChecker.Models;
 
 namespace NewsChecker.Services
 {
-    public class NewspaperService
+    public class NewspapperService
     {
         private readonly NewsCheckerContext _context;
         private readonly IMapper _mapper;
 
-        public NewspaperService(NewsCheckerContext context, IMapper mapper)
+        public NewspapperService(NewsCheckerContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public DbSet<Newspaper> Get()
+        public DbSet<Newspapper> Get()
         {
-            return _context.Newspaper;
+            return _context.Newspapper;
         }
 
-        public ReadNewspaperDTO? Get(int id)
+        public ReadNewspapperDTO? Get(int id)
         {
-            Newspaper? newspaper = FindNewspaper(id);
+            Newspapper? Newspapper = FindNewspapper(id);
 
-            if (newspaper != null)
+            if (Newspapper != null)
             {
-                return _mapper.Map<ReadNewspaperDTO>(newspaper);
+                return _mapper.Map<ReadNewspapperDTO>(Newspapper);
             }
 
             return null;
         }
 
-        public ReadNewspaperDTO Post(CreateNewspaperDTO newspaperDTO)
+        public ReadNewspapperDTO Post(CreateNewspapperDTO NewspapperDTO)
         {
-            Newspaper newspaper = _mapper.Map<Newspaper>(newspaperDTO);
-            _context.Newspaper.Add(newspaper);
+            Newspapper Newspapper = _mapper.Map<Newspapper>(NewspapperDTO);
+            _context.Newspapper.Add(Newspapper);
             _context.SaveChanges();
 
-            return _mapper.Map<ReadNewspaperDTO>(newspaper);
+            return _mapper.Map<ReadNewspapperDTO>(Newspapper);
         }
 
-        public Result Put(UpdateNewspaperDTO newspaperDTO, int id)
+        public Result Put(UpdateNewspapperDTO NewspapperDTO, int id)
         {
-            Newspaper? newspaper = FindNewspaper(id);
+            Newspapper? Newspapper = FindNewspapper(id);
 
-            if (newspaper == null)
+            if (Newspapper == null)
             {
                 return Result.Fail("Jornal não encontrado.");
             }
 
-            _mapper.Map(newspaperDTO, newspaper);
+            _mapper.Map(NewspapperDTO, Newspapper);
             _context.SaveChanges();
             return Result.Ok();
         }
 
         public Result Delete(int id)
         {
-            Newspaper? newspaper = FindNewspaper(id);
+            Newspapper? Newspapper = FindNewspapper(id);
 
-            if (newspaper == null)
+            if (Newspapper == null)
             {
                 return Result.Fail("Jornal não encontrado.");
             }
 
-            _context.Remove(newspaper);
+            _context.Remove(Newspapper);
             _context.SaveChanges();
             return Result.Ok();
         }
 
 
-        private Newspaper? FindNewspaper(int id)
+        private Newspapper? FindNewspapper(int id)
         {
-            return _context.Newspaper.FirstOrDefault(_ => _.Id == id);
+            return _context.Newspapper.FirstOrDefault(_ => _.Id == id);
         }
     }
 }

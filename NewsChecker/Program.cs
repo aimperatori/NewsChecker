@@ -47,7 +47,7 @@ builder.Services.AddSingleton<IAuthorizationHandler, MinAgeHandler>();
 builder.Services.AddScoped<EditionService, EditionService>();
 builder.Services.AddScoped<JournalistNewsService, JournalistNewsService>();
 builder.Services.AddScoped<JournalistService, JournalistService>();
-builder.Services.AddScoped<NewspaperService, NewspaperService>();
+builder.Services.AddScoped<NewspapperService, NewspapperService>();
 builder.Services.AddScoped<NewsService, NewsService>();
 
 builder.Services.AddControllers();

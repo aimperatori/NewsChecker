@@ -6,7 +6,7 @@ using NewsChecker.Data;
 using NewsChecker.Data.DTO.Journalist;
 using NewsChecker.Data.DTO.JournalistNews;
 using NewsChecker.Data.DTO.News;
-using NewsChecker.Data.DTO.Newspaper;
+using NewsChecker.Data.DTO.Newspapper;
 using NewsChecker.Models;
 using NewsChecker.Services;
 using System.Collections;

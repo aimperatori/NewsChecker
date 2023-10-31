@@ -37,7 +37,7 @@ namespace NewsChecker.Data
         }
 
         public DbSet<News> News { get; set; }
-        public DbSet<Newspaper> Newspaper { get; set; }
+        public DbSet<Newspapper> Newspapper { get; set; }
         public DbSet<Edition> Edition { get; set; }
         public DbSet<Journalist> Journalist { get; set; }
         public DbSet<JournalistNews> JournalistNews { get; set; }

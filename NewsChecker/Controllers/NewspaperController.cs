@@ -3,7 +3,7 @@ using FluentResults;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsChecker.Data;
-using NewsChecker.Data.DTO.Newspaper;
+using NewsChecker.Data.DTO.Newspapper;
 using NewsChecker.Models;
 using NewsChecker.Services;
 
@@ -12,11 +12,11 @@ namespace NewsChecker.Controllers
     [ApiController]
     //[Route("[controller]"), Authorize]
     [Route("[controller]")]
-    public class NewspaperController : ControllerBase
+    public class NewspapperController : ControllerBase
     {
-        NewspaperService _service;
+        NewspapperService _service;
 
-        public NewspaperController(NewspaperService service)
+        public NewspapperController(NewspapperService service)
         {
             _service = service;;
         }
@@ -30,27 +30,27 @@ namespace NewsChecker.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            ReadNewspaperDTO newspaperDTO = _service.Get(id);
+            ReadNewspapperDTO NewspapperDTO = _service.Get(id);
 
-            if (newspaperDTO != null)
+            if (NewspapperDTO != null)
             {
-                return Ok(newspaperDTO);
+                return Ok(NewspapperDTO);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin, regular", Policy = "MinAge")]
-        public IActionResult Post([FromBody] CreateNewspaperDTO newspaperDTO)
+        //[Authorize(Roles = "admin, regular", Policy = "MinAge")]
+        public IActionResult Post([FromBody] CreateNewspapperDTO NewspapperDTO)
         {
-            ReadNewspaperDTO readDTO = _service.Post(newspaperDTO);
+            ReadNewspapperDTO readDTO = _service.Post(NewspapperDTO);
 
             return CreatedAtAction(nameof(Get), new { readDTO.Id }, readDTO);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] UpdateNewspaperDTO newpaperDTO)
+        public IActionResult Update(int id, [FromBody] UpdateNewspapperDTO newpaperDTO)
         {
             Result result = _service.Put(newpaperDTO, id);
 
