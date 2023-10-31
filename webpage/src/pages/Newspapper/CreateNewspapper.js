@@ -29,7 +29,7 @@ export class CreateNewspapper extends Component {
             name: newspapperName,
         };
 
-        NewsCheckerFetcher.Post("Newspaper", formData)
+        NewsCheckerFetcher.Post("Newspapper", formData)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);

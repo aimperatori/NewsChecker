@@ -37,7 +37,7 @@ export class ListNewspapper extends ListAbstract {
     }
 
     async populateData() {
-        const response = await NewsCheckerFetcher.Get("newspaper");
+        const response = await NewsCheckerFetcher.Get("Newspapper");
         const data = await response.json();
         this.setState({ data: data, loading: false });
     }

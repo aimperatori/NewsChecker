@@ -27,7 +27,7 @@ export class CreateEdition extends Component {
         const formData = {
             name: editionName,
             publishDate: publishDate,
-            newspaperId: newspapperId
+            NewspapperId: newspapperId
         };
 
         NewsCheckerFetcher.Post("edition", formData)
@@ -75,7 +75,7 @@ export class CreateEdition extends Component {
                             type="text"
                             placeholder="newspapper"
                             name="newspapperId"
-                            value={this.state.newspaperId}
+                            value={this.state.NewspapperId}
                             onChange={this.handleChange}
                         />
                     </Form.Group>

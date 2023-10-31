@@ -11,7 +11,7 @@ function EditNewspapper() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        NewsCheckerFetcher.GetById('Newspaper', id)
+        NewsCheckerFetcher.GetById('Newspapper', id)
             .then(response => response.json())
             .then(data => {
                 setNewspapperName(data.name);
@@ -33,7 +33,7 @@ function EditNewspapper() {
             name: newspapperName,
         };
 
-        NewsCheckerFetcher.Put("Newspaper", id, formData)
+        NewsCheckerFetcher.Put("Newspapper", id, formData)
             .then((data) => {
                 console.log(data);
                 setLoading(false);

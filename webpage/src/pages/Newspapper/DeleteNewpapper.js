@@ -8,7 +8,7 @@ function DeleteNewspapper() {
     const navigate = useNavigate();
 
     const handleDelete = () => {
-        NewsCheckerFetcher.Delete('newspaper', id)
+        NewsCheckerFetcher.Delete('Newspapper', id)
             .then((response) => {
                 if (response.status === 200 || response.status === 204) {
                     // A exclusão foi bem-sucedida, navegue de volta para a página de listagem

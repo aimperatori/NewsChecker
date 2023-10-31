@@ -19,7 +19,7 @@ function EditEdition() {
             .then(data => {
                 setEditionName(data.name);
                 setPublishDate(data.publishDate),
-                setNewspapperId(data.newspaper.id)
+                setNewspapperId(data.Newspapper.id)
             })
             .catch(error => {
                 console.error('Erro ao buscar dados do jornal:', error);
@@ -45,7 +45,7 @@ function EditEdition() {
         const formData = {
             name: editionName,
             publishDate: publishDate,
-            newspaperId: newspapperId
+            NewspapperId: newspapperId
         };
 
         NewsCheckerFetcher.Put("edition", id, formData)
