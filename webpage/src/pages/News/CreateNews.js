@@ -45,15 +45,15 @@ export class CreateNews extends Component {
             subtitle: subtitle,
             resume: resume,
             editionId: editionId,
-            newsType: parseInt(newsType)
-            //journalistsId: journalistIds
+            newsType: parseInt(newsType),
+            journalistsId: journalistIds
         };
 
         NewsCheckerFetcher.Post("news", formData)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-
+                /*
                 journalistIds.map(journalistId => {
 
                     const formDataJournalistNews = {
@@ -73,7 +73,7 @@ export class CreateNews extends Component {
                         });
 
                 });
-
+                */
             })
             .catch((error) => {
                 console.error('Erro ao enviar o formulário:', error);
