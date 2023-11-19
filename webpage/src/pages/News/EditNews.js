@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
+import NewsTypeSelect from '../../components/NewsType/Select/NewsTypeSelect';
 
 function EditNews() {
     const { id } = useParams();
@@ -203,15 +204,10 @@ function EditNews() {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formNewsType">
-                    <Form.Label>News Type</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter news type"
-                        value={newsType}
-                        onChange={newsTypeHandleChange}
-                    />
-                </Form.Group>
+                <NewsTypeSelect
+                    value={newsType}
+                    onChange={newsTypeHandleChange}
+                />
 
                 <Form.Group controlId="formJournalistIds">
                     <Form.Label>Journalist</Form.Label>

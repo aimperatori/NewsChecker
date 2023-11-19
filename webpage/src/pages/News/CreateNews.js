@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
+import NewsTypeSelect from '../../components/NewsType/Select/NewsTypeSelect';
 
 export class CreateNews extends Component {
 
@@ -132,16 +133,10 @@ export class CreateNews extends Component {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formNewsType">
-                        <Form.Label>News Type</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter news type"
-                            name="newsType"
-                            value={this.state.newsType}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                    <NewsTypeSelect
+                        value={this.state.newsType}
+                        onChange={this.handleChange}
+                    />
 
                     <Form.Group controlId="formJournalistIds">
                         <Form.Label>Journalist</Form.Label>
