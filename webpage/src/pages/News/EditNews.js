@@ -109,7 +109,7 @@ function EditNews() {
 
                         data.journalist.forEach(function (e) {
                             // DELETE
-                            if (!journalistIds.some(item => item.id == e.id)) {
+                            if (!journalistIds.some(id => id == e.id)) {
 
                                 NewsCheckerFetcher.Delete2("JournalistNews", e.id, id)
                                     .then((response) => response.json())
@@ -122,8 +122,6 @@ function EditNews() {
                                     });
                             }
                         })
-                        
-
                     });
 
 
