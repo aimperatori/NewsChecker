@@ -2,12 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import { ListAbstract } from '../../components/ListAbstract'
+import NewsTypes from '../../components/NewsType/Data/NewsTypes';
+import { formatDate } from '../../helpers/DateTimeHelper';
 
 export class ListNews extends ListAbstract {
 
     constructor(props) {
         super(props);
         this.state.title = "News";
+    }
+
+    getNewsTypeName(newsTypeId) {
+        return NewsTypes[newsTypeId];
     }
 
     renderTable(data) {
@@ -34,9 +40,9 @@ export class ListNews extends ListAbstract {
                             <td>{article.title}</td>
                             <td>{article.subtitle}</td>
                             <td>{article.resume}</td>
-                            <td>{article.newsType}</td>
+                            <td>{this.getNewsTypeName(article.newsType)}</td>
                             <td>{article.edition.name}</td>
-                            <td>{article.edition.publishDate}</td>
+                            <td>{formatDate(article.edition.publishDate)}</td>
                             <td>{article.edition.newspapper.name}</td>
                             <td>{article.journalist.map(row => row.name).join(', ')}</td>
                             <td>
