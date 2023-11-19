@@ -24,7 +24,7 @@ function EditNews() {
                 setResume(data.resume),
                 setEditionId(data.edition.id),
                 setNewsType(data.newsType),
-                setJournalistsId(data.journalist.map(j => j.id))
+                setJournalistsId(data.journalist == 0 ? [''] : data.journalist.map(j => j.id))
             })
             .catch(error => {
                 console.error('Erro ao buscar dados:', error);
