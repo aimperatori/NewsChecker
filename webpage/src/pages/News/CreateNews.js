@@ -53,6 +53,7 @@ export class CreateNews extends Component {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                this.setState({ loading: false });
                 /*
                 journalistIds.map(journalistId => {
 
