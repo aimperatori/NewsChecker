@@ -185,7 +185,8 @@ function EditNews() {
                 <Form.Group className="mb-3" controlId="formResume">
                     <Form.Label>Resume</Form.Label>
                     <Form.Control
-                        type="text"
+                        as="textarea"
+                        rows={5}
                         placeholder="Enter news Resume"
                         value={resume}
                         onChange={resumeHandleChange}
