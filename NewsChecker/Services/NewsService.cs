@@ -87,6 +87,18 @@ namespace NewsChecker.Services
         {
             News news = _mapper.Map<News>(newsDTO);
             _context.News.Add(news);
+
+            _context.SaveChanges();
+
+            foreach (var journalistId in newsDTO.JournalistsId)
+            {
+                _context.JournalistNews.Add(new JournalistNews()
+                {
+                    NewsId = news.Id,
+                    JournalistId = journalistId,
+                });
+            }
+
             _context.SaveChanges();
 
             return _mapper.Map<ReadNewsDTO>(news);

@@ -15,7 +15,7 @@ namespace NewsChecker.Data.DTO.News
         [Required]
         public NewsType NewsType { get; set; }
 
-        //[Required]
-        //public ICollection<int>? JournalistsId { get; set; }
+        [Required]
+        public ICollection<int> JournalistsId { get; set; }
     }
 }
