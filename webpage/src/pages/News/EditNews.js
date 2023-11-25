@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import NewsTypeSelect from '../../components/NewsType/Select/NewsTypeSelect';
+import EditionSelect from '../../components/Edition/Select/EditionSelect';
+import JournalistSelectAddButton from '../../components/Journalist/Select/JournalistSelectAddButton';
 
 function EditNews() {
     const { id } = useParams();
@@ -194,21 +196,25 @@ function EditNews() {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formEditionId">
-                    <Form.Label>Edition Id</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter Edition Id"
-                        value={editionId}
-                        onChange={editionIdHandleChange}
-                    />
-                </Form.Group>
+                <EditionSelect
+                    value={editionId}
+                    onChange={editionIdHandleChange}
+                />
 
                 <NewsTypeSelect
                     value={newsType}
                     onChange={newsTypeHandleChange}
                 />
 
+
+                <JournalistSelectAddButton
+                    journalistIds={journalistIds}
+                    createChooseOption={true}
+                    onChange={(e, index) => handleJournalistIdChange(e, index)}
+                    onAddJournalist={handleAddJournalistId}
+                />
+
+                {/*
                 <Form.Group controlId="formJournalistIds">
                     <Form.Label>Journalist</Form.Label>
                     {journalistIds.map((id, index) => (
@@ -224,6 +230,7 @@ function EditNews() {
                         Add Journalist ID
                     </Button>
                 </Form.Group>
+                 */ }
 
                 <Button variant="primary" type="submit" disabled={loading}>
                     {loading ? 'Submitting...' : 'Submit'}

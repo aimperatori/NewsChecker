@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import NewsTypeSelect from '../../components/NewsType/Select/NewsTypeSelect';
+import EditionSelect from '../../components/Edition/Select/EditionSelect';
+import JournalistSelectAddButton from '../../components/Journalist/Select/JournalistSelectAddButton';
 
 export class CreateNews extends Component {
 
@@ -122,38 +124,39 @@ export class CreateNews extends Component {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formEditionId">
-                        <Form.Label>Edition</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter news Edition"
-                            name="editionId"
-                            value={this.state.editionId}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                    <EditionSelect
+                        value={this.state.editionId}
+                        onChange={this.handleChange}
+                        createChooseOption={true}
+                    />
 
                     <NewsTypeSelect
                         value={this.state.newsType}
                         onChange={this.handleChange}
                     />
 
+                    <JournalistSelectAddButton
+                        journalistIds={this.state.journalistIds}
+                        createChooseOption={true}
+                        onChange={(e, index) => this.handleJournalistIdChange(e, index)}
+                        onAddJournalist={this.handleAddJournalistId}
+                    />
+                    
+                    {/*
                     <Form.Group controlId="formJournalistIds">
                         <Form.Label>Journalist</Form.Label>
                         {this.state.journalistIds.map((id, index) => (
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter journalist ID"
+                            <JournalistSelect
+                                createChooseOption={true}
                                 value={id}
                                 onChange={(e) => this.handleJournalistIdChange(e, index)}
-                                key={index}
-                            />
+                                key={index} />
                         ))}
                         <Button variant="primary" onClick={this.handleAddJournalistId}>
                             Add Journalist ID
                         </Button>
                     </Form.Group>
-
+                    */ }
 
                     <Button variant="primary" type="submit" disabled={this.state.loading}>
                         {this.state.loading ? 'Submitting...' : 'Submit'}
