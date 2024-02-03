@@ -1,5 +1,4 @@
-﻿using MailKit.Net.Smtp;
-using MimeKit;
+﻿using MimeKit;
 using UserAuthenticator.Models;
 
 namespace UserAuthenticator.Services
@@ -24,6 +23,7 @@ namespace UserAuthenticator.Services
 
         private void SendEmail(MimeMessage emailMessage)
         {
+            /*
             using (var client = new SmtpClient())
             {
                 client.Connect(
@@ -41,6 +41,7 @@ namespace UserAuthenticator.Services
 
                 client.Send(emailMessage);
             }
+            */
         }
 
         private MimeMessage CreateBodyEmail(Message message)

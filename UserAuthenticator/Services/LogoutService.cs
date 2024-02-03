@@ -6,7 +6,7 @@ namespace UserAuthenticator.Services
 {
     public class LogoutService
     {
-        private SignInManager<User> _signinManager;
+        private readonly SignInManager<User> _signinManager;
 
         public LogoutService(SignInManager<User> signinManager)
         {
@@ -24,7 +24,5 @@ namespace UserAuthenticator.Services
 
             return Result.Fail("Logout falhou.");
         }
-
-
     }
 }

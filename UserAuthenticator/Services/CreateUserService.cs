@@ -58,6 +58,11 @@ namespace UserAuthenticator.Services
         {
             var identityUser = _userManager.Users.FirstOrDefault(_ => _.Id == request.Id);
 
+            if (identityUser is null)
+            {
+                return Result.Fail("Usuário não encontrado.");
+            }
+
             string decodedCode = HttpUtility.HtmlDecode(request.Code);
 
             var identityResult = _userManager.ConfirmEmailAsync(identityUser, decodedCode).Result;

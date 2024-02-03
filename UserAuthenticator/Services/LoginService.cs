@@ -1,31 +1,23 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using Org.BouncyCastle.Asn1.Ocsp;
 using UserAuthenticator.Data.Requests;
 using UserAuthenticator.Models;
 
 namespace UserAuthenticator.Services
 {
-    public class LoginService
+    public class LoginService(SignInManager<User> signInManager, TokenService tokenService)
     {
-        private SignInManager<User> _signInManager;
-        private TokenService _tokenService;
+        private readonly SignInManager<User> _signInManager = signInManager;
+        private readonly TokenService _tokenService = tokenService;
 
-        public LoginService(SignInManager<User> signInManager, TokenService tokenService)
+        public async Task<Result> LoginUser(LoginRequest request)
         {
-            _signInManager = signInManager;
-            _tokenService = tokenService;
-        }
+            var resultIdentity = await _signInManager.PasswordSignInAsync(request.Username, request.Password, false, false);
 
-        public Result LoginUser(LoginRequest request)
-        {
-            var resultIdentity = _signInManager.PasswordSignInAsync(request.Username, request.Password, false, false);
-
-            Console.WriteLine(resultIdentity.Result);
-
-            if (resultIdentity.Result.Succeeded)
+            if (resultIdentity.Succeeded)
             {
-                var identityUser = _signInManager.UserManager.Users.FirstOrDefault(_ => _.NormalizedUserName == request.Username.ToUpper());
+                //var identityUser = 
+                User identityUser = GetUserByUsername(request.Username)!;
                 Token token = _tokenService.CreateToken(identityUser, _signInManager.UserManager.GetRolesAsync(identityUser).Result.FirstOrDefault());
 
                 return Result.Ok().WithSuccess(token.Value);
@@ -36,9 +28,9 @@ namespace UserAuthenticator.Services
 
         public Result RequestResetPassword(RequestResetPasswordRequest request)
         {
-            User identityUser = GetUserByEmail(request.Email);
+            User? identityUser = GetUserByEmail(request.Email);
 
-            if (identityUser != null)
+            if (identityUser is not null)
             {
                 string resetToken = _signInManager.UserManager.GeneratePasswordResetTokenAsync(identityUser).Result;
 
@@ -50,9 +42,9 @@ namespace UserAuthenticator.Services
 
         public Result ResetPassword(ResetPasswordRequest request)
         {
-            User identityUser = GetUserByEmail(request.Email);
+            User? identityUser = GetUserByEmail(request.Email);
 
-            if (identityUser != null)
+            if (identityUser is not null)
             {
                 IdentityResult identityResult = _signInManager.UserManager.ResetPasswordAsync(identityUser, request.Token, request.Password).Result;
 
@@ -65,7 +57,12 @@ namespace UserAuthenticator.Services
             return Result.Fail("Falha ao redefinir a senha.");
         }
 
-        private User GetUserByEmail(string email)
+        private User? GetUserByUsername(string username)
+        {
+            return _signInManager.UserManager.Users.FirstOrDefault(_ => _.NormalizedUserName == username.ToUpper());
+        }
+
+        private User? GetUserByEmail(string email)
         {
             return _signInManager.UserManager.Users.FirstOrDefault(_ => _.NormalizedEmail == email.ToUpper());
         }
