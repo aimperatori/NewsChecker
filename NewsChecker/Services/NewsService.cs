@@ -20,10 +20,9 @@ namespace NewsChecker.Services
             _mapper = mapper;
         }
 
-
         public List<ReadNewsDTO> Get()
         {
-            List<ReadNewsDTO> list = new();
+            List<ReadNewsDTO> list = [];
 
             foreach (var news in _context.News)
             {

@@ -7,27 +7,21 @@ using NewsChecker.Models;
 
 namespace NewsChecker.Services
 {
-    public class EditionService
+    public class EditionService(NewsCheckerContext context, IMapper mapper)
     {
-        private readonly NewsCheckerContext _context;
-        private readonly IMapper _mapper;
+        private readonly NewsCheckerContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
-        public EditionService(NewsCheckerContext context, IMapper mapper)
+        public IList<ReadEditionDTO> Get()
         {
-            _context = context;
-            _mapper = mapper;
-        }
-
-        public DbSet<Edition> Get()
-        {
-            return _context.Edition;
+            return _mapper.Map<List<ReadEditionDTO>>(_context.Edition);
         }
 
         public ReadEditionDTO? Get(int id)
         {
             Edition? edition = _context.Edition.FirstOrDefault(edition => edition.Id == id);
 
-            if (edition != null)
+            if (edition is not null)
             {
                 ReadEditionDTO editionDTO = _mapper.Map<ReadEditionDTO>(edition);
                 return editionDTO;

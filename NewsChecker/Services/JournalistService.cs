@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using NewsChecker.Data;
-using NewsChecker.Data.DTO.Edition;
 using NewsChecker.Data.DTO.Journalist;
 using NewsChecker.Models;
 
@@ -11,7 +8,6 @@ namespace NewsChecker.Services
 {
     public class JournalistService
     {
-
         private readonly NewsCheckerContext _context;
         private readonly IMapper _mapper;
 
@@ -21,9 +17,9 @@ namespace NewsChecker.Services
             _mapper = mapper;
         }
 
-        public DbSet<Journalist> Get()
+        public IList<Journalist> Get()
         {
-            return _context.Journalist;
+            return _mapper.Map<List<Journalist>>(_context.Journalist);
         }
 
         public ReadJournalistDTO? Get(int id)
@@ -80,6 +76,5 @@ namespace NewsChecker.Services
         {
             return _context.Journalist.FirstOrDefault(_ => _.Id == id);
         }
-
     }
 }

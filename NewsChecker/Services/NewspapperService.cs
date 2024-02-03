@@ -19,9 +19,9 @@ namespace NewsChecker.Services
             _mapper = mapper;
         }
 
-        public DbSet<Newspapper> Get()
+        public IList<Newspapper> Get()
         {
-            return _context.Newspapper;
+            return _mapper.Map<List<Newspapper>>(_context.Newspapper);
         }
 
         public ReadNewspapperDTO? Get(int id)
