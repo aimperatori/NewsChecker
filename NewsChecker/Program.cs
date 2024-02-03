@@ -49,6 +49,7 @@ builder.Services.AddScoped<JournalistNewsService, JournalistNewsService>();
 builder.Services.AddScoped<JournalistService, JournalistService>();
 builder.Services.AddScoped<NewspapperService, NewspapperService>();
 builder.Services.AddScoped<NewsService, NewsService>();
+builder.Services.AddScoped<SearchService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
