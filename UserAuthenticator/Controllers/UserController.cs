@@ -10,21 +10,20 @@ namespace UserAuthenticator.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        readonly CreateUserService _service;
+        private readonly UserService _service;
             
-        public UserController(CreateUserService service)
+        public UserController(UserService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public IActionResult CreateUser(CreateUserDTO createDTO)
+        public async Task<IActionResult> CreateUser(CreateUserDTO createDTO)
         {
-            Result result = _service.CreateUserAsync(createDTO);
+            Result result = await _service.CreateUserAsync(createDTO);
 
             if (result.IsFailed)
-            {
-                
+            {                
                 return BadRequest(result.Reasons);
             }
 
@@ -32,13 +31,13 @@ namespace UserAuthenticator.Controllers
         }
 
         [HttpGet("/active")]
-        public IActionResult ActiveUser([FromQuery] ActiveUserRequest request)
+        public async Task<IActionResult> ActiveUser([FromQuery] ActiveUserRequest request)
         {
-            Result result = _service.ActiveUser(request);
+            Result result = await _service.ActiveUserAsync(request);
 
             if (result.IsFailed)
             {
-                return StatusCode(500);
+                return BadRequest(result.Reasons);
             }
 
             return Ok();

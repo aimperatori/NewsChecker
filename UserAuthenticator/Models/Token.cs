@@ -1,12 +1,7 @@
 ﻿namespace UserAuthenticator.Models
 {
-    public class Token
+    public class Token(string value)
     {
-        public Token(string value)
-        {
-            Value = value;
-        }
-
-        public string Value { get; }
+        public string Value { get; } = value;
     }
 }

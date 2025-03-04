@@ -16,9 +16,22 @@ namespace UserAuthenticator.Services
 
             if (resultIdentity.Succeeded)
             {
-                //var identityUser = 
-                User identityUser = GetUserByUsername(request.Username)!;
-                Token token = _tokenService.CreateToken(identityUser, _signInManager.UserManager.GetRolesAsync(identityUser).Result.FirstOrDefault());
+                var identityUser = GetUserByUsername(request.Username);
+
+                if (identityUser is null)
+                {
+                    return Result.Fail("Usuário não encontrado.");
+                }
+
+                var userRoles = await _signInManager.UserManager.GetRolesAsync(identityUser);
+                var userRole = userRoles.FirstOrDefault();
+
+                if (userRole is null)
+                {
+                    return Result.Fail("Usuário não possui permissões.");
+                }
+
+                Token token = _tokenService.CreateToken(identityUser, userRole);
 
                 return Result.Ok().WithSuccess(token.Value);
             }
@@ -26,27 +39,27 @@ namespace UserAuthenticator.Services
             return Result.Fail("Login falhou.");
         }
 
-        public Result RequestResetPassword(RequestResetPasswordRequest request)
+        public async Task<Result> RequestResetPasswordAsync(RequestResetPasswordRequest request)
         {
             User? identityUser = GetUserByEmail(request.Email);
 
             if (identityUser is not null)
             {
-                string resetToken = _signInManager.UserManager.GeneratePasswordResetTokenAsync(identityUser).Result;
+                string resetToken = await _signInManager.UserManager.GeneratePasswordResetTokenAsync(identityUser);
 
                 return Result.Ok().WithSuccess(resetToken);
             }
 
-            return Result.Fail("Falha ao solicitar a redefinição da senha.");
+            return Result.Fail("Falha ao solicitar a redefinição da senha. Usuário não encontrado");
         }
 
-        public Result ResetPassword(ResetPasswordRequest request)
+        public async Task<Result> ResetPasswordAsync(ResetPasswordRequest request)
         {
             User? identityUser = GetUserByEmail(request.Email);
 
             if (identityUser is not null)
             {
-                IdentityResult identityResult = _signInManager.UserManager.ResetPasswordAsync(identityUser, request.Token, request.Password).Result;
+                IdentityResult identityResult = await _signInManager.UserManager.ResetPasswordAsync(identityUser, request.Token, request.Password);
 
                 if (identityResult.Succeeded)
                 {

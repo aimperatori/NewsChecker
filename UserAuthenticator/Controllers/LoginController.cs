@@ -17,9 +17,9 @@ namespace UserAuthenticator.Controllers
         }
 
         [HttpPost]
-        public IActionResult LoginUser(LoginRequest _loginRequest)
+        public async Task<IActionResult> LoginUserAsync(LoginRequest _loginRequest)
         {
-            Result result = _service.LoginUser(_loginRequest);
+            Result result = await _service.LoginUser(_loginRequest);
 
             if (result.IsFailed)
             {
@@ -30,9 +30,9 @@ namespace UserAuthenticator.Controllers
         }
 
         [HttpPost("/request-reset-password")]
-        public IActionResult RequestResetPassword(RequestResetPasswordRequest request)
+        public async Task<IActionResult> RequestResetPasswordAsync(RequestResetPasswordRequest request)
         {
-            Result result = _service.RequestResetPassword(request);
+            Result result = await _service.RequestResetPasswordAsync(request);
             
             if (result.IsFailed)
             {
@@ -43,9 +43,9 @@ namespace UserAuthenticator.Controllers
         }
 
         [HttpPost("/reset-password")]
-        public IActionResult ResetPassword(ResetPasswordRequest request)
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordRequest request)
         {
-            Result result = _service.ResetPassword(request);
+            Result result = await _service.ResetPasswordAsync(request);
 
             if (result.IsFailed)
             {

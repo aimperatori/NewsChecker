@@ -8,7 +8,8 @@ namespace UserAuthenticator.Controllers
     [ApiController]
     public class LogoutController : ControllerBase
     {
-        private LogoutService _service;
+        private readonly LogoutService _service;
+
         public LogoutController(LogoutService service)
         {
             _service = service;

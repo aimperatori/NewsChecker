@@ -24,10 +24,10 @@ builder.Services.AddDbContext<UserAuthDbContext>(opts => opts.UseSqlite(builder.
 
 builder.Services.AddIdentity<User, IdentityRole<int>>(opt =>
     opt.SignIn.RequireConfirmedEmail = false
-    )
-    .AddEntityFrameworkStores<UserAuthDbContext>()
-    .AddDefaultTokenProviders()
-    .AddErrorDescriber<IdentityPortugueseMessages>();
+)
+.AddEntityFrameworkStores<UserAuthDbContext>()
+.AddDefaultTokenProviders()
+.AddErrorDescriber<IdentityPortugueseMessages>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -40,11 +40,12 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredUniqueChars = 0;
 });
 
-builder.Services.AddScoped<CreateUserService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<LogoutService>();
 builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<RoleService>();
 
 /* builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -64,17 +65,18 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, IdadeAuthorization>();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("IdadeMinima", policy =>
-        policy.AddRequirements(new IdadeMinima(18))
-    );
-});
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("IdadeMinima", policy =>
+//        policy.AddRequirements(new IdadeMinima(18))
+//    );
+//});
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+}
+).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {

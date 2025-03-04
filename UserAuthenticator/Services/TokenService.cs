@@ -16,7 +16,7 @@ namespace UserAuthenticator.Services
                 new Claim("UserName", user.UserName),
                 new Claim("id", user.Id.ToString()),
                 new Claim(ClaimTypes.Role, role),
-                new Claim(ClaimTypes.DateOfBirth, user.Birthday.ToString())
+                //new Claim(ClaimTypes.DateOfBirth, user.Birthday.ToString())
             ];
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("8sfas9fg25as9f5a9sf5asfgaqsfuasfasfa"));
