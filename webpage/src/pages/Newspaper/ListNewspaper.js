@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 import { ListAbstract } from '../../components/ListAbstract'
 
-export class ListNewspapper extends ListAbstract {
+export class ListNewspaper extends ListAbstract {
 
     constructor(props) {
         super(props);
-        this.state.title = "Newspapper"
+        this.state.title = "Newspaper"
     }
 
     renderTable(data) {
@@ -37,7 +37,7 @@ export class ListNewspapper extends ListAbstract {
     }
 
     async populateData() {
-        const response = await NewsCheckerFetcher.Get("Newspapper");
+        const response = await NewsCheckerFetcher.Get("Newspaper");
         const data = await response.json();
         this.setState({ data: data, loading: false });
     }

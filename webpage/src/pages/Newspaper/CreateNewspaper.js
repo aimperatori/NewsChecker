@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 
-export class CreateNewspapper extends Component {
-    static displayName = CreateNewspapper.name;
+export class CreateNewspaper extends Component {
+    static displayName = CreateNewspaper.name;
 
     constructor(props) {
         super(props);
@@ -22,14 +22,14 @@ export class CreateNewspapper extends Component {
         e.preventDefault();
         this.setState({ loading: true });
 
-        const { newspapperName } = this.state;
+        const { newspaperName } = this.state;
 
         // Crie um objeto com os dados que você deseja enviar para a API
         const formData = {
-            name: newspapperName,
+            name: newspaperName,
         };
 
-        NewsCheckerFetcher.Post("Newspapper", formData)
+        NewsCheckerFetcher.Post("Newspaper", formData)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -44,15 +44,15 @@ export class CreateNewspapper extends Component {
     render() {
         return (
             <div>
-                <h1 id="tableLabel">Create a new Newspapper</h1>
+                <h1 id="tableLabel">Create a new Newspaper</h1>
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formNewspapperName">
-                        <Form.Label>Newspapper Name</Form.Label>
+                    <Form.Group className="mb-3" controlId="formNewspaperName">
+                        <Form.Label>Newspaper Name</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Enter newspapper name"
-                            name="newspapperName"
-                            value={this.state.newspapperName}
+                            placeholder="Enter newspaper name"
+                            name="newspaperName"
+                            value={this.state.newspaperName}
                             onChange={this.handleChange}
                         />
                     </Form.Group>

@@ -4,17 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { NewsCheckerFetcher } from '../../api/NewsChecker/NewsCheckerFetcher';
 
-function EditNewspapper() {
+function EditNewspaper() {
     const { id } = useParams();
 
-    const [newspapperName, setNewspapperName] = useState('');
+    const [newspaperName, setNewspaperName] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        NewsCheckerFetcher.GetById('Newspapper', id)
+        NewsCheckerFetcher.GetById('Newspaper', id)
             .then(response => response.json())
             .then(data => {
-                setNewspapperName(data.name);
+                setNewspaperName(data.name);
             })
             .catch(error => {
                 console.error('Erro ao buscar dados do jornal:', error);
@@ -22,7 +22,7 @@ function EditNewspapper() {
     }, [id]);
 
     const handleChange = (e) => {
-        setNewspapperName(e.target.value);
+        setNewspaperName(e.target.value);
     };
 
     const handleSubmit = (e) => {
@@ -30,15 +30,15 @@ function EditNewspapper() {
         setLoading(true);
 
         const formData = {
-            name: newspapperName,
+            name: newspaperName,
         };
 
-        NewsCheckerFetcher.Put("Newspapper", id, formData)
+        NewsCheckerFetcher.Put("Newspaper", id, formData)
             .then((data) => {
                 console.log(data);
                 setLoading(false);
                 // Redirecionar para a página de detalhes ou outra página após a edição
-                // this.props.history.push(`/newspapper/details/${id}`);
+                // this.props.history.push(`/newspaper/details/${id}`);
             })
             .catch((error) => {
                 console.error('Erro ao enviar o formulário:', error);
@@ -48,14 +48,14 @@ function EditNewspapper() {
 
     return (
         <div>
-            <h1 id="tableLabel">Editing newspapper id {id}</h1>
+            <h1 id="tableLabel">Editing newspaper id {id}</h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formNewspapperName">
-                    <Form.Label>Newspapper Name</Form.Label>
+                <Form.Group className="mb-3" controlId="formNewspaperName">
+                    <Form.Label>Newspaper Name</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Enter newspapper name"
-                        value={newspapperName}
+                        placeholder="Enter newspaper name"
+                        value={newspaperName}
                         onChange={handleChange}
                     />
                 </Form.Group>
@@ -68,4 +68,4 @@ function EditNewspapper() {
     );
 }
 
-export default EditNewspapper;
+export default EditNewspaper;

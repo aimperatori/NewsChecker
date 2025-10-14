@@ -18,8 +18,8 @@ function EditEdition() {
             .then(response => response.json())
             .then(data => {
                 setEditionName(data.name);
-                setPublishDate(data.publishDate),
-                setNewspapperId(data.newspapper.id)
+                setPublishDate(data.publishDate);
+                setNewspapperId(data.newspapper.id);
             })
             .catch(error => {
                 console.error('Erro ao buscar dados do jornal:', error);

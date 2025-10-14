@@ -3,10 +3,10 @@ import { ListJournalist } from "./pages/Journalist/ListJournalist";
 import { CreateJournalist } from "./pages/Journalist/CreateJournalist";
 import EditJournalist from "./pages/Journalist/EditJournalist";
 import DeleteJournalist from "./pages/Journalist/DeleteJournalist";
-import { ListNewspapper } from "./pages/Newspapper/ListNewspapper";
-import { CreateNewspapper } from "./pages/Newspapper/CreateNewspapper";
-import EditNewspapper from "./pages/Newspapper/EditNewspapper";
-import DeleteNewspapper from "./pages/Newspapper/DeleteNewpapper";
+import { ListNewspaper } from "./pages/Newspaper/ListNewspaper";
+import { CreateNewspaper } from "./pages/Newspaper/CreateNewspaper";
+import EditNewspaper from "./pages/Newspaper/EditNewspaper";
+import DeleteNewspaper from "./pages/Newspaper/DeleteNewpaper";
 import { ListNews } from "./pages/News/ListNews";
 import { CreateNews } from "./pages/News/CreateNews";
 import EditNews from "./pages/News/EditNews";
@@ -22,20 +22,20 @@ const AppRoutes = [
         element: <Home />
     },
     {
-        path: '/newspapper',
-        element: <ListNewspapper />
+        path: '/newspaper',
+        element: <ListNewspaper />
     },
     {
-        path: '/newspapper/create',
-        element: <CreateNewspapper />
+        path: '/newspaper/create',
+        element: <CreateNewspaper />
     },
     {
-        path: '/newspapper/edit/:id',
-        element: <EditNewspapper />
+        path: '/newspaper/edit/:id',
+        element: <EditNewspaper />
     },
     {
-        path: '/newspapper/delete/:id',
-        element: <DeleteNewspapper />
+        path: '/newspaper/delete/:id',
+        element: <DeleteNewspaper />
     },
     {
         path: '/edition',
