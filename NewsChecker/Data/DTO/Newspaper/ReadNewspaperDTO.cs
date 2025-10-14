@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace NewsChecker.Data.DTO.Newspapper
+﻿namespace NewsChecker.Data.DTO.Newspaper
 {
-    public class ReadNewspapperDTO
+    public class ReadNewspaperDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

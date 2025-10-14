@@ -1,5 +1,4 @@
-﻿using NewsChecker.Data.DTO.Newspapper;
-using System.ComponentModel.DataAnnotations;
+﻿using NewsChecker.Data.DTO.Newspaper;
 
 namespace NewsChecker.Data.DTO.Edition
 {
@@ -8,6 +7,6 @@ namespace NewsChecker.Data.DTO.Edition
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public DateOnly PublishDate { get; set; }
-        public ReadNewspapperDTO? Newspapper { get; set; }
+        public required ReadNewspaperDTO Newspaper { get; set; }
     }
 }

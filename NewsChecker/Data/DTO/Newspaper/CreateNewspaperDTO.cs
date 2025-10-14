@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NewsChecker.Data.DTO.Newspapper
+namespace NewsChecker.Data.DTO.Newspaper
 {
-    public class CreateNewspapperDTO
+    public class CreateNewspaperDTO
     {
         [Required]
         [StringLength(100)]

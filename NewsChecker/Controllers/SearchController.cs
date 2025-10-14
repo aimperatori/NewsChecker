@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewsChecker.Services;
-using System.Collections;
 
 namespace NewsChecker.Controllers
 {
@@ -18,7 +17,7 @@ namespace NewsChecker.Controllers
         [HttpGet("basic")]
         public IActionResult SearchBasic([FromQuery] string text)
         {
-            IEnumerable list = _searchSerive.BasicSearch(text);
+            var list = _searchSerive.BasicSearch(text);
 
             return Ok(list);
         }

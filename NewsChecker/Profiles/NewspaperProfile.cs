@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using NewsChecker.Data.DTO.Newspapper;
+using NewsChecker.Data.DTO.Newspaper;
 using NewsChecker.Models;
 
 namespace NewsChecker.Profiles
 {
-    public class NewspapperProfile : Profile
+    public class NewspaperProfile : Profile
     {
-        public NewspapperProfile() 
+        public NewspaperProfile() 
         {
-            CreateMap<CreateNewspapperDTO, Newspapper>();
-            CreateMap<Newspapper, ReadNewspapperDTO>();
-            CreateMap<UpdateNewspapperDTO, Newspapper>();
+            CreateMap<CreateNewspaperDTO, Newspaper>();
+            CreateMap<Newspaper, ReadNewspaperDTO>();
+            CreateMap<UpdateNewspaperDTO, Newspaper>();
         }
     }
 }

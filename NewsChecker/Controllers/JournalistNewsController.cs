@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using FluentResults;
+﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using NewsChecker.Data;
-using NewsChecker.Data.DTO.Journalist;
 using NewsChecker.Data.DTO.JournalistNews;
-using NewsChecker.Models;
 using NewsChecker.Services;
 
 namespace NewsChecker.Controllers
@@ -13,7 +9,7 @@ namespace NewsChecker.Controllers
     [Route("[controller]")]
     public class JournalistNewsController : ControllerBase
     {
-        JournalistNewsService _service;
+        private readonly JournalistNewsService _service;
 
         public JournalistNewsController(JournalistNewsService service)
         {

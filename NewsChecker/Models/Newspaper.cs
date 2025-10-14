@@ -2,7 +2,7 @@
 
 namespace NewsChecker.Models
 {
-    public class Newspapper
+    public class Newspaper
     {
         [Key]
         public int Id { get; set; }

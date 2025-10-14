@@ -1,31 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NewsChecker.Data;
+﻿using AutoMapper;
+using NewsChecker.Data.DTO.News;
+using NewsChecker.Repositories.Interfaces;
 
 namespace NewsChecker.Services
 {
     public class SearchService
     {
-        private readonly NewsCheckerContext _context;
+        private readonly INewsRepository _newsRepository;
+        private readonly IMapper _mapper;
 
-        public SearchService(NewsCheckerContext context)
+        public SearchService(INewsRepository newsRepository, IMapper mapper)
         {
-            _context = context;
+            _newsRepository = newsRepository;
+            _mapper = mapper;
         }
 
-        internal IQueryable BasicSearch(string text)
+        public List<ReadNewsDTO> BasicSearch(string text)
         {
-            var searchWords = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var findNews = _newsRepository.BasicSearch(text);
 
-            IQueryable query = _context.News.Select(_ => _);
+            var newsDto = _mapper.Map<List<ReadNewsDTO>>(findNews);
 
-            foreach (var word in searchWords)
-            {
-                query = _context.News.Where(_ => EF.Functions.Like(_.Title, $"%{word}%") ||
-                                                 EF.Functions.Like(_.Subtitle, $"%{word}%") ||
-                                                 EF.Functions.Like(_.Resume, $"%{word}%"));
-            }
-
-            return query;
+            return newsDto;
         }
     }
 }

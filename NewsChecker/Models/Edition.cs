@@ -12,7 +12,7 @@ namespace NewsChecker.Models
         [Required]
         public DateOnly PublishDate { get; set; }
         [Required]
-        public int NewspapperId { get; set; }
-        public virtual Newspapper? Newspapper { get; set; }
+        public int NewspaperId { get; set; }
+        public virtual Newspaper? Newspaper { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace NewsChecker.Data.DTO.Edition
         [Required]
         public DateOnly PublishDate { get; set; }
         [Required]
-        public int NewspapperId { get; set; }
+        public int NewspaperId { get; set; }
     }
 }

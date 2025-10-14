@@ -1,11 +1,11 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NewsChecker.Authorization;
 using NewsChecker.Data;
+using NewsChecker.Repositories;
+using NewsChecker.Repositories.Interfaces;
 using NewsChecker.Services;
 using System.Text;
 
@@ -47,9 +47,12 @@ builder.Services.AddSingleton<IAuthorizationHandler, MinAgeHandler>();
 builder.Services.AddScoped<EditionService, EditionService>();
 builder.Services.AddScoped<JournalistNewsService, JournalistNewsService>();
 builder.Services.AddScoped<JournalistService, JournalistService>();
-builder.Services.AddScoped<NewspapperService, NewspapperService>();
+builder.Services.AddScoped<NewspaperService, NewspaperService>();
 builder.Services.AddScoped<NewsService, NewsService>();
-builder.Services.AddScoped<SearchService>();
+builder.Services.AddScoped<SearchService, SearchService>();
+
+builder.Services.AddScoped<INewsRepository, NewsRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -61,12 +64,12 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("https://localhost:3000")
-                          .AllowAnyHeader() // Permitir todos os cabeçalhos
-                          .AllowAnyMethod(); // Permitir todos os métodos HTTP (GET, POST, etc.);
-                      });
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:3000")
+            .AllowAnyHeader() // Permitir todos os cabeçalhos
+            .AllowAnyMethod(); // Permitir todos os métodos HTTP (GET, POST, etc.);
+        });
 });
 
 

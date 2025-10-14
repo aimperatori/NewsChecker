@@ -1,6 +1,5 @@
 ﻿using NewsChecker.Models.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace NewsChecker.Models
 {
