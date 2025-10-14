@@ -9,7 +9,7 @@ export class CreateNewspaper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newspapperName: '',
+            newspaperName: '',
             loading: false,
         };
     }

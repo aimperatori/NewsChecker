@@ -28,7 +28,7 @@ export class ListNews extends ListAbstract {
                         <th>News Type</th>
                         <th>Edition name</th>
                         <th>Published data</th>
-                        <th>Newspapper name</th>
+                        <th>Newspaper name</th>
                         <th>Journalists</th>
                         <th>Actions</th>
                     </tr>
@@ -43,7 +43,7 @@ export class ListNews extends ListAbstract {
                             <td>{this.getNewsTypeName(article.newsType)}</td>
                             <td>{article.edition.name}</td>
                             <td>{formatDate(article.edition.publishDate)}</td>
-                            <td>{article.edition.newspapper.name}</td>
+                            <td>{article.edition.newspaper.name}</td>
                             <td>{article.journalist.map(row => row.name).join(', ')}</td>
                             <td>
                                 <Link to={`edit/${article.id}`}>Edit</Link>

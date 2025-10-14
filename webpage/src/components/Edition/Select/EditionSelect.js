@@ -31,7 +31,7 @@ function EditionSelect({ value, onChange, createChooseOption }) {
                 { createChooseOption == true ? <option value="">Choose an edition</option> : '' }
                 {editions.map((edition) => (
                     <option key={edition.id} value={edition.id}>
-                        {edition.name + ' - ' + edition.newspapper.name}
+                        {edition.name + ' - ' + edition.newspaper.name}
                     </option>
                 ))}
             </Form.Select>

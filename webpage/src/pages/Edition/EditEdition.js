@@ -9,7 +9,7 @@ function EditEdition() {
 
     const [editionName, setEditionName] = useState('');
     const [publishDate, setPublishDate] = useState('');
-    const [newspapperId, setNewspapperId] = useState('');
+    const [newspaperId, setNewspaperId] = useState('');
 
     const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ function EditEdition() {
             .then(data => {
                 setEditionName(data.name);
                 setPublishDate(data.publishDate);
-                setNewspapperId(data.newspapper.id);
+                setNewspaperId(data.newspaper.id);
             })
             .catch(error => {
                 console.error('Erro ao buscar dados do jornal:', error);
@@ -34,8 +34,8 @@ function EditEdition() {
         setPublishDate(e.target.value);
     };
 
-    const newspapperIdHandleChange = (e) => {
-        setNewspapperId(e.target.value);
+    const newspaperIdHandleChange = (e) => {
+        setNewspaperId(e.target.value);
     };
 
     const handleSubmit = (e) => {
@@ -45,7 +45,7 @@ function EditEdition() {
         const formData = {
             name: editionName,
             publishDate: publishDate,
-            NewspapperId: newspapperId
+            NewspaperId: newspaperId
         };
 
         NewsCheckerFetcher.Put("edition", id, formData)
@@ -85,13 +85,13 @@ function EditEdition() {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formNewspapperId">
-                    <Form.Label>Newspapper Id</Form.Label>
+                <Form.Group className="mb-3" controlId="formNewspaperId">
+                    <Form.Label>Newspaper Id</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Enter Newspapper Id"
-                        value={newspapperId}
-                        onChange={newspapperIdHandleChange}
+                        placeholder="Enter Newspaper Id"
+                        value={newspaperId}
+                        onChange={newspaperIdHandleChange}
                     />
                 </Form.Group>
 

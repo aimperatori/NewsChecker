@@ -22,12 +22,12 @@ export class CreateEdition extends Component {
         e.preventDefault();
         this.setState({ loading: true });
 
-        const { editionName, publishDate, newspapperId } = this.state;
+        const { editionName, publishDate, newspaperId } = this.state;
 
         const formData = {
             name: editionName,
             publishDate: publishDate,
-            NewspapperId: newspapperId
+            NewspaperId: newspaperId
         };
 
         NewsCheckerFetcher.Post("edition", formData)
@@ -69,13 +69,13 @@ export class CreateEdition extends Component {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formEditionNewspapperId">
-                        <Form.Label>Newspapper</Form.Label>
+                    <Form.Group className="mb-3" controlId="formEditionNewspaperId">
+                        <Form.Label>Newspaper</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="newspapper"
-                            name="newspapperId"
-                            value={this.state.NewspapperId}
+                            placeholder="newspaper"
+                            name="newspaperId"
+                            value={this.state.NewspaperId}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
